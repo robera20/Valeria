@@ -1,0 +1,109 @@
+{%- comment -%}
+  VALERIA MARQUEE SECTION
+{%- endcomment -%}
+
+<section class="valeria-marquee" style="--marquee-speed: {{ section.settings.speed }}s;">
+  <div class="valeria-marquee__track">
+    <div class="valeria-marquee__content">
+      <span class="valeria-marquee__item">{{ section.settings.text }}</span>
+      <span class="valeria-marquee__separator">{{ section.settings.separator }}</span>
+      <span class="valeria-marquee__item">{{ section.settings.text }}</span>
+      <span class="valeria-marquee__separator">{{ section.settings.separator }}</span>
+      <span class="valeria-marquee__item">{{ section.settings.text }}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-marquee {
+    overflow: hidden;
+    background-color: var(--valeria-color-button);
+    color: var(--valeria-color-button-text);
+    padding: var(--valeria-space-2) var(--valeria-space-3);
+  }
+
+  .valeria-marquee__track {
+    display: flex;
+    width: 100%;
+  }
+
+  .valeria-marquee__content {
+    display: flex;
+    gap: var(--valeria-space-4);
+    white-space: nowrap;
+    animation: marquee var(--marquee-speed) linear infinite;
+  }
+
+  .valeria-marquee__item {
+    flex-shrink: 0;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .valeria-marquee__separator {
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  .valeria-marquee:hover .valeria-marquee__content {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .valeria-marquee__content {
+      animation: none;
+    }
+
+    .valeria-marquee__item:first-child {
+      display: block;
+    }
+
+    .valeria-marquee__item:not(:first-child) {
+      display: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "✦ Free Shipping ✦ Designed for Tomorrow ✦"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator",
+      "default": "✦"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "unit": "s",
+      "label": "Speed"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee"
+    }
+  ]
+}
+{% endschema %}

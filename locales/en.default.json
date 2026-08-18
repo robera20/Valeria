@@ -1,0 +1,151 @@
+{
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you're looking for has left the universe."
+    },
+    "meta": {
+      "tags": "Tags"
+    },
+    "newsletter": {
+      "label": "Email",
+      "success": "Thank you for subscribing!",
+      "error": "There was an error. Please try again."
+    },
+    "quick_view": "Quick view",
+    "search": "Search",
+    "search_placeholder": "Search products...",
+    "no_results": "No results found",
+    "cart": "Cart",
+    "cart_empty": "Your cart is empty",
+    "continue_shopping": "Continue shopping",
+    "close": "Close"
+  },
+  "settings_schema": {
+    "colors": "Colors",
+    "color_scheme": "Color Scheme",
+    "color_scheme": {
+      "obsidian": "Obsidian (Dark)",
+      "lunar": "Lunar (Light)",
+      "aurora": "Aurora (Gradient)",
+      "titanium": "Titanium (Neutral)",
+      "custom": "Custom"
+    },
+    "colors": {
+      "background": "Background",
+      "foreground": "Foreground Text",
+      "heading": "Heading",
+      "muted_text": "Muted Text",
+      "accent": "Accent Color",
+      "accent_secondary": "Secondary Accent",
+      "button_background": "Button Background",
+      "button_text": "Button Text",
+      "border": "Border",
+      "card_background": "Card Background",
+      "price": "Price",
+      "sale_price": "Sale Price"
+    },
+    "typography": "Typography",
+    "font_system": "Font Family",
+    "font_size_base": "Base Font Size",
+    "layout": "Layout",
+    "container_width": "Container Width",
+    "border_radius": "Border Radius",
+    "spacing_scale": "Spacing Scale",
+    "header": "Header",
+    "logo": "Logo",
+    "logo_width": "Logo Width",
+    "header_sticky": "Sticky Header",
+    "header_transparent_home": "Transparent Header on Homepage",
+    "header_height": "Header Height",
+    "product": "Product",
+    "product_quick_add_enabled": "Enable Quick Add",
+    "product_quick_view_enabled": "Enable Quick View",
+    "product_color_swatches": "Show Color Swatches",
+    "product_show_inventory": "Show Inventory Count",
+    "product_show_vendor": "Show Vendor",
+    "cart": "Cart",
+    "cart_drawer_enabled": "Enable Cart Drawer",
+    "cart_free_shipping_enabled": "Show Free Shipping Progress",
+    "cart_free_shipping_threshold": "Free Shipping Threshold",
+    "motion": "Motion & Animation",
+    "animations_enabled": "Enable Animations",
+    "animation_intensity": "Animation Intensity",
+    "social": "Social Media",
+    "social_instagram": "Instagram URL",
+    "social_twitter": "Twitter URL",
+    "social_facebook": "Facebook URL",
+    "social_tiktok": "TikTok URL",
+    "social_youtube": "YouTube URL"
+  },
+  "header": {
+    "menu": "Menu",
+    "account": "Account",
+    "search_trigger": "Search",
+    "cart_trigger": "Cart"
+  },
+  "product": {
+    "title": "Product",
+    "price": "Price",
+    "compare_at_price": "Compare at",
+    "sold_out": "Sold out",
+    "unavailable": "Unavailable",
+    "new_badge": "New",
+    "sale_badge": "Sale",
+    "add_to_cart": "Add to cart",
+    "buy_it_now": "Buy it now",
+    "more_details": "More details",
+    "quantity": "Quantity",
+    "select_option": "Select {{ option }}",
+    "select_color": "Select Color",
+    "select_size": "Select Size",
+    "product_form": "Product form",
+    "media_gallery": "Product media gallery",
+    "share": "Share this product"
+  },
+  "collection": {
+    "title": "Collection",
+    "sort_by": "Sort by",
+    "filters": "Filters",
+    "apply_filters": "Apply Filters",
+    "clear_filters": "Clear Filters",
+    "no_products": "No products found"
+  },
+  "cart_drawer": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "view_cart": "View Cart",
+    "continue_shopping": "Continue shopping",
+    "free_shipping_progress": "Free shipping at {{ amount }}"
+  },
+  "footer": {
+    "newsletter": "Subscribe to our newsletter",
+    "newsletter_placeholder": "Enter your email",
+    "follow_us": "Follow us",
+    "payment_methods": "Payment methods",
+    "copyright": "© {{ year }} {{ shop_name }}. All rights reserved."
+  },
+  "blog": {
+    "title": "Blog",
+    "by_author": "By {{ author }}",
+    "posted_on": "Posted on {{ date }}",
+    "reading_time": "{{ time }} min read",
+    "comments": "{{ count }} comment",
+    "comments_plural": "{{ count }} comments",
+    "read_more": "Read more"
+  },
+  "customer": {
+    "account": "Account",
+    "orders": "Order History",
+    "addresses": "Addresses",
+    "profile": "Profile",
+    "logout": "Log out",
+    "edit_profile": "Edit profile",
+    "order_number": "Order #{{ number }}",
+    "order_date": "Placed on {{ date }}",
+    "order_status": "Status",
+    "order_total": "Total"
+  }
+}

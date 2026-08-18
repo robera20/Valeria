@@ -1,0 +1,101 @@
+{%- comment -%}
+  Renders the cart drawer
+{%- endcomment -%}
+
+<div 
+  class="valeria-cart-drawer" 
+  role="region" 
+  aria-label="{{ 'accessibility.cart_title' | t }}"
+  data-cart-drawer
+  hidden
+>
+  <div class="valeria-cart-drawer__overlay" data-cart-drawer-close></div>
+  
+  <div class="valeria-cart-drawer__panel">
+    <div class="valeria-cart-drawer__header">
+      <h2 class="valeria-cart-drawer__title">{{ 'cart.empty_title' | t }}</h2>
+      <button 
+        class="valeria-cart-drawer__close"
+        data-cart-drawer-close
+        aria-label="{{ 'accessibility.close_menu' | t }}"
+      >
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+
+    <div class="valeria-cart-drawer__content">
+      {%- if cart.item_count > 0 -%}
+        <div class="valeria-cart-drawer__items">
+          {%- for item in cart.items -%}
+            <div class="valeria-cart-drawer__item">
+              <a href="{{ item.url }}" class="valeria-cart-drawer__item-image">
+                {%- if item.image -%}
+                  <img 
+                    src="{{ item.image | img_url: '100x100' }}"
+                    alt="{{ item.title }}"
+                    width="100"
+                    height="100"
+                    loading="lazy"
+                  >
+                {%- endif -%}
+              </a>
+              <div class="valeria-cart-drawer__item-info">
+                <a href="{{ item.url }}" class="valeria-cart-drawer__item-title">
+                  {{ item.title }}
+                </a>
+                <div class="valeria-cart-drawer__item-price">
+                  {{ item.price | money }}
+                </div>
+                <div class="valeria-cart-drawer__item-quantity">
+                  <button class="valeria-qty-btn" data-change-quantity="-1">−</button>
+                  <input 
+                    type="number" 
+                    value="{{ item.quantity }}"
+                    min="1"
+                    data-item-quantity
+                  >
+                  <button class="valeria-qty-btn" data-change-quantity="1">+</button>
+                </div>
+              </div>
+              <button 
+                class="valeria-cart-drawer__item-remove"
+                data-remove-item="{{ item.key }}"
+              >
+                {% render 'icon', icon: 'close' %}
+              </button>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="valeria-cart-drawer__summary">
+          <div class="valeria-cart-drawer__row">
+            <span>{{ 'cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <div class="valeria-cart-drawer__row">
+                <span>{{ discount.title }}</span>
+                <span>−{{ discount.total_allocated_price | money }}</span>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+
+        <a href="{{ routes.checkout_url }}" class="valeria-button valeria-button--primary">
+          {{ 'cart.checkout' | t }}
+        </a>
+        <a href="/" class="valeria-button valeria-button--secondary">
+          {{ 'cart.continue_shopping' | t }}
+        </a>
+      {%- else -%}
+        <div class="valeria-cart-drawer__empty">
+          <p>{{ 'cart.empty_text' | t }}</p>
+          <a href="/collections/all" class="valeria-button">
+            {{ 'cart.continue_shopping' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+{%- comment -%}
+  VALERIA FAQ SECTION
+{%- endcomment -%}
+
+<section class="valeria-faq">
+  <div class="valeria-container">
+    {%- if section.settings.title -%}
+      <h2 class="valeria-section-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="valeria-faq__list" data-faq-list>
+        {%- for block in section.blocks -%}
+          <div class="valeria-faq__item" {{ block.shopify_attributes }}>
+            <button 
+              class="valeria-faq__question"
+              data-faq-trigger
+              aria-expanded="false"
+              aria-controls="faq-{{ forloop.index }}"
+            >
+              <span>{{ block.settings.question }}</span>
+              <span class="valeria-faq__icon">+</span>
+            </button>
+
+            <div 
+              id="faq-{{ forloop.index }}"
+              class="valeria-faq__answer"
+              data-faq-content
+              hidden
+            >
+              <div class="valeria-faq__answer-content">
+                {{ block.settings.answer }}
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .valeria-faq {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+  }
+
+  .valeria-faq__list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .valeria-faq__item {
+    border-bottom: 1px solid var(--valeria-color-border);
+  }
+
+  .valeria-faq__item:last-child {
+    border-bottom: none;
+  }
+
+  .valeria-faq__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: var(--valeria-space-4) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    color: var(--valeria-color-heading);
+    transition: color var(--valeria-transition-fast);
+  }
+
+  .valeria-faq__question:hover {
+    color: var(--valeria-color-accent);
+  }
+
+  .valeria-faq__icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: var(--valeria-space-3);
+  }
+
+  .valeria-faq__item[open] .valeria-faq__icon {
+    transform: rotate(45deg);
+  }
+
+  .valeria-faq__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .valeria-faq__item[open] .valeria-faq__answer {
+    max-height: 1000px;
+  }
+
+  .valeria-faq__answer-content {
+    padding-bottom: var(--valeria-space-3);
+    line-height: 1.8;
+    color: var(--valeria-color-text);
+  }
+
+  @media (max-width: 768px) {
+    .valeria-faq {
+      padding: var(--valeria-space-4) var(--valeria-space-2);
+    }
+
+    .valeria-faq__question {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const triggers = document.querySelectorAll('[data-faq-trigger]');
+    
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const item = this.parentElement;
+        const isOpen = item.hasAttribute('open');
+        
+        // Close all items
+        document.querySelectorAll('[data-faq-list] .valeria-faq__item').forEach(el => {
+          el.removeAttribute('open');
+        });
+        
+        // Open clicked item
+        if (!isOpen) {
+          item.setAttribute('open', '');
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Frequently Asked Questions"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}

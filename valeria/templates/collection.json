@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "header": {
+      "type": "collection-header",
+      "settings": {
+        "show_image": true,
+        "show_description": true
+      }
+    },
+    "products": {
+      "type": "collection-products",
+      "settings": {
+        "columns": 4,
+        "enable_filters": true,
+        "enable_sorting": true,
+        "products_per_page": 24
+      }
+    }
+  },
+  "order": ["header", "products"]
+}

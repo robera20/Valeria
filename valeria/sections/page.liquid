@@ -1,0 +1,74 @@
+{%- comment -%}
+  VALERIA PAGE SECTION
+{%- endcomment -%}
+
+<section class="valeria-page">
+  <div class="valeria-container">
+    <div class="valeria-page__content">
+      {%- if page.title -%}
+        <h1 class="valeria-page__title">{{ page.title }}</h1>
+      {%- endif -%}
+
+      <div class="valeria-page__body">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-page {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+    min-height: 60vh;
+  }
+
+  .valeria-page__title {
+    font-size: var(--valeria-font-size-h1);
+    margin-bottom: var(--valeria-space-4);
+    text-align: center;
+  }
+
+  .valeria-page__content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .valeria-page__body {
+    line-height: 1.8;
+  }
+
+  .valeria-page__body h2 {
+    margin-top: var(--valeria-space-4);
+  }
+
+  .valeria-page__body p {
+    margin-bottom: var(--valeria-space-3);
+  }
+
+  .valeria-page__body ul,
+  .valeria-page__body ol {
+    margin-bottom: var(--valeria-space-3);
+    margin-left: var(--valeria-space-4);
+    list-style: initial;
+  }
+
+  .valeria-page__body li {
+    margin-bottom: var(--valeria-space-1);
+  }
+
+  @media (max-width: 768px) {
+    .valeria-page {
+      padding: var(--valeria-space-4) var(--valeria-space-2);
+    }
+
+    .valeria-page__title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Page"
+}
+{% endschema %}

@@ -1,0 +1,178 @@
+{%- comment -%}
+  VALERIA TESTIMONIALS SECTION
+{%- endcomment -%}
+
+<section class="valeria-testimonials">
+  <div class="valeria-container">
+    {%- if section.settings.title -%}
+      <h2 class="valeria-section-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="valeria-testimonials__grid" data-columns="{{ section.settings.columns }}">
+        {%- for block in section.blocks -%}
+          <div class="valeria-testimonial" {{ block.shopify_attributes }}>
+            <div class="valeria-testimonial__rating">
+              {%- for i in (1..5) -%}
+                <span class="valeria-star {% if i <= block.settings.rating %}filled{% endif %}">★</span>
+              {%- endfor -%}
+            </div>
+
+            <p class="valeria-testimonial__quote">{{ block.settings.quote }}</p>
+
+            <p class="valeria-testimonial__author">{{ block.settings.author }}</p>
+            <p class="valeria-testimonial__role">{{ block.settings.role }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .valeria-testimonials {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+    background-color: var(--valeria-color-foreground);
+    border-radius: var(--valeria-radius-lg);
+    margin: var(--valeria-space-6) var(--valeria-space-3);
+  }
+
+  .valeria-section-title {
+    text-align: center;
+    margin-bottom: var(--valeria-space-6);
+    font-size: var(--valeria-font-size-h2);
+  }
+
+  .valeria-testimonials__grid {
+    display: grid;
+    gap: var(--valeria-space-4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .valeria-testimonials__grid[data-columns="1"] {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .valeria-testimonials__grid[data-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valeria-testimonials__grid[data-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .valeria-testimonial {
+    background-color: var(--valeria-color-background);
+    padding: var(--valeria-space-4);
+    border-radius: var(--valeria-radius-lg);
+    border: 1px solid var(--valeria-color-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--valeria-space-2);
+  }
+
+  .valeria-testimonial__rating {
+    display: flex;
+    gap: var(--valeria-space-1);
+  }
+
+  .valeria-star {
+    font-size: 1.25rem;
+    color: var(--valeria-color-border);
+    transition: color var(--valeria-transition-fast);
+  }
+
+  .valeria-star.filled {
+    color: var(--valeria-color-accent);
+  }
+
+  .valeria-testimonial__quote {
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--valeria-color-text);
+    flex: 1;
+  }
+
+  .valeria-testimonial__author {
+    font-weight: 600;
+    color: var(--valeria-color-heading);
+    margin-top: var(--valeria-space-2);
+  }
+
+  .valeria-testimonial__role {
+    font-size: 0.875rem;
+    color: var(--valeria-color-text);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .valeria-testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role/Title"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "default": 5,
+          "label": "Rating"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Customers Say"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 1,
+      "max": 3,
+      "default": 3,
+      "label": "Columns"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

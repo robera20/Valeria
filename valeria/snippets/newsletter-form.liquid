@@ -1,0 +1,25 @@
+{%- comment -%}
+  Renders a newsletter form
+{%- endcomment -%}
+
+<form method="post" action="/contact#newsletter" class="valeria-newsletter-form" data-newsletter-form>
+  <input 
+    type="hidden"
+    name="contact[tags]"
+    value="newsletter"
+  >
+  <div class="valeria-newsletter-form__group">
+    <input 
+      type="email"
+      name="contact[email]"
+      required
+      autocomplete="email"
+      placeholder="{{ 'general.newsletter.label' | t }}"
+      class="valeria-newsletter-form__input"
+    >
+    <button type="submit" class="valeria-newsletter-form__button">
+      {{ 'general.newsletter.label' | t }}
+    </button>
+  </div>
+  <div class="valeria-newsletter-form__message" data-newsletter-message></div>
+</form>

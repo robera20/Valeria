@@ -1,0 +1,30 @@
+VALERIA — The Future of Commerce
+
+A premium, futuristic Shopify Online Store 2.0 theme built for modern brands. VALERIA combines sophisticated design, exceptional performance, and full accessibility.
+
+✨ HIGHLIGHTS
+• Futuristic design system with glass panels and gradients
+• Five customizable color schemes (Obsidian, Lunar, Aurora, Titanium, Custom)
+• Sticky header with mega menu and predictive search
+• AJAX cart drawer with instant recommendations
+• Quick add & quick view modals for streamlined shopping
+• Product variant swatches with real-time updates
+• Full collection filtering and sorting
+• Responsive product gallery with zoom and lightbox
+• Newsletter signup integration
+• WCAG 2.1 AA accessibility compliance
+• Optimized for Core Web Vitals (Lighthouse 90+)
+
+🎨 DESIGN
+Sophisticated visual language with careful attention to typography, spacing, and motion. Supports reduced-motion preferences for all users.
+
+⚡ PERFORMANCE
+Minimal dependencies, efficient Liquid, optimized images, and modern vanilla JavaScript. No jQuery or external frameworks.
+
+♿ ACCESSIBILITY
+Semantic HTML, proper heading hierarchy, ARIA labels, keyboard navigation, and screen reader optimization.
+
+🛠 CONFIGURATION
+70+ theme settings for complete customization without code. Presets included for quick brand alignment.
+
+Perfect for fashion, technology, luxury, and lifestyle brands looking for a production-ready, premium theme.

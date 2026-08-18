@@ -1,0 +1,75 @@
+{%- comment -%}
+  VALERIA NEWSLETTER SECTION
+{%- endcomment -%}
+
+<section class="valeria-newsletter-section">
+  <div class="valeria-container">
+    <div class="valeria-newsletter-content">
+      {%- if section.settings.title -%}
+        <h2 class="valeria-newsletter-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description -%}
+        <p class="valeria-newsletter-description">{{ section.settings.description }}</p>
+      {%- endif -%}
+
+      {% render 'newsletter-form' %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-newsletter-section {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+    background-color: var(--valeria-color-foreground);
+    border-radius: var(--valeria-radius-lg);
+    margin: var(--valeria-space-6) var(--valeria-space-3);
+  }
+
+  .valeria-newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .valeria-newsletter-title {
+    font-size: var(--valeria-font-size-h2);
+    margin-bottom: var(--valeria-space-2);
+  }
+
+  .valeria-newsletter-description {
+    margin-bottom: var(--valeria-space-4);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .valeria-newsletter-section {
+      margin: var(--valeria-space-4) var(--valeria-space-2);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join the Future"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Subscribe to get special offers and updates.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

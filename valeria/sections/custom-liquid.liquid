@@ -1,0 +1,37 @@
+{%- comment -%}
+  VALERIA CUSTOM LIQUID SECTION
+{%- endcomment -%}
+
+<section class="valeria-custom-liquid">
+  <div class="valeria-container">
+    {%- if section.settings.liquid -%}
+      {{ section.settings.liquid }}
+    {%- else -%}
+      <p>No custom liquid added yet.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .valeria-custom-liquid {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Liquid",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "liquid",
+      "label": "Custom Liquid"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Liquid"
+    }
+  ]
+}
+{% endschema %}

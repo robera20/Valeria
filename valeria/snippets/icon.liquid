@@ -1,0 +1,8 @@
+{%- comment -%}
+  Renders an icon based on Shopify's icon library
+  Accepts: icon (string), class (string)
+{%- endcomment -%}
+
+<svg class="icon icon-{{ icon }} {{ class }}" aria-hidden="true" focusable="false">
+  <use href="#icon-{{ icon }}"></use>
+</svg>

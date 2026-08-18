@@ -1,0 +1,37 @@
+{%- comment -%}
+  Renders the search overlay
+{%- endcomment -%}
+
+<div 
+  class="valeria-search-overlay" 
+  role="region"
+  data-search-overlay
+  hidden
+>
+  <div class="valeria-search-overlay__backdrop" data-search-close></div>
+  
+  <div class="valeria-search-overlay__panel">
+    <div class="valeria-search-overlay__header">
+      <div class="valeria-search-overlay__input-wrapper">
+        <input 
+          type="search"
+          class="valeria-search-overlay__input"
+          placeholder="{{ 'header.search' | t }}"
+          autocomplete="off"
+          aria-label="{{ 'header.search' | t }}"
+          data-search-input
+        >
+        {% render 'icon', icon: 'search' %}
+      </div>
+      <button 
+        class="valeria-search-overlay__close"
+        data-search-close
+        aria-label="{{ 'accessibility.close_search' | t }}"
+      >
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+
+    <div class="valeria-search-overlay__results" data-search-results></div>
+  </div>
+</div>

@@ -1,0 +1,211 @@
+{%- comment -%}
+  VALERIA PRODUCT SECTION
+{%- endcomment -%}
+
+<section class="valeria-product">
+  <div class="valeria-product__inner">
+    {%- comment -%}Product Gallery{%- endcomment -%}
+    <div class="valeria-product__gallery">
+      <div class="valeria-product__main-media" data-product-main-media>
+        {%- if product.featured_media -%}
+          <img 
+            src="{{ product.featured_media | img_url: '800x800' }}"
+            alt="{{ product.featured_media.alt }}"
+            loading="eager"
+            width="800"
+            height="800"
+          >
+        {%- endif -%}
+      </div>
+
+      {%- if product.media.size > 1 -%}
+        <div class="valeria-product__thumbnails">
+          {%- for media in product.media limit: 6 -%}
+            <button 
+              class="valeria-product__thumbnail"
+              data-product-thumbnail
+              data-src="{{ media | img_url: '200x200' }}"
+              data-alt="{{ media.alt }}"
+              aria-label="{{ media.alt }}"
+            >
+              <img 
+                src="{{ media | img_url: '80x80' }}"
+                alt="{{ media.alt }}"
+                width="80"
+                height="80"
+                loading="lazy"
+              >
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}Product Information{%- endcomment -%}
+    <div class="valeria-product__info">
+      {%- if product.vendor -%}
+        <p class="valeria-product__brand">{{ product.vendor }}</p>
+      {%- endif -%}
+
+      <h1 class="valeria-product__title">{{ product.title }}</h1>
+
+      <div class="valeria-product__price">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="valeria-product__price-compare">
+            {{ product.compare_at_price | money }}
+          </span>
+        {%- endif -%}
+        <span class="valeria-product__price-current" data-product-price>
+          {{ product.price | money }}
+        </span>
+      </div>
+
+      <div class="valeria-product__availability" data-product-availability>
+        {%- if product.available -%}
+          In stock
+        {%- else -%}
+          Out of stock
+        {%- endif -%}
+      </div>
+
+      <form method="post" action="/cart/add" enctype="multipart/form-data" class="valeria-product__form">
+        {%- comment -%}Variants{%- endcomment -%}
+        {%- if product.options.size > 0 -%}
+          <div class="valeria-product__variants">
+            {%- for option in product.options -%}
+              <div class="valeria-product__variant-group">
+                <label class="valeria-product__variant-label">{{ option }}</label>
+                <div class="valeria-product__variant-options">
+                  {%- for value in product.options_with_values[forloop.index0].values -%}
+                    {%- assign variant = product.variants | where: option, value | first -%}
+                    <button
+                      type="button"
+                      class="valeria-product__variant-button"
+                      data-variant-option="{{ value }}"
+                      data-variant-id="{{ variant.id }}"
+                      {% unless variant.available %}disabled{% endunless %}
+                    >
+                      {{ value }}
+                    </button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}Quantity{%- endcomment -%}
+        <div class="valeria-product__quantity">
+          <label class="valeria-product__quantity-label" for="quantity">Quantity</label>
+          <input 
+            type="number"
+            id="quantity"
+            name="quantity"
+            value="1"
+            min="1"
+            class="valeria-product__quantity-input"
+            data-quantity-input
+          >
+        </div>
+
+        {%- comment -%}Add to Cart Buttons{%- endcomment -%}
+        <div class="valeria-product__actions">
+          <input 
+            type="hidden"
+            name="id"
+            value="{{ product.selected_or_first_available_variant.id }}"
+            data-variant-id-input
+          >
+          
+          <button 
+            type="submit"
+            class="valeria-button valeria-button--primary"
+            data-add-to-cart
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {%- if product.available -%}
+              Add to Cart
+            {%- else -%}
+              Out of Stock
+            {%- endif -%}
+          </button>
+
+          {%- if shop.checkout.shopify_payments_enabled and product.available -%}
+            <button type="button" class="valeria-button valeria-button--secondary">
+              Buy it now
+            </button>
+          {%- endif -%}
+        </div>
+
+        <div class="valeria-product__message" data-add-to-cart-message></div>
+      </form>
+
+      {%- comment -%}Collapsible Sections{%- endcomment -%}
+      {%- if product.description -%}
+        <div class="valeria-product__collapsible">
+          <button class="valeria-product__collapsible-header" data-collapsible-header>
+            Description
+            <span>+</span>
+          </button>
+          <div class="valeria-product__collapsible-content" data-collapsible-content>
+            {{ product.description }}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="valeria-product__collapsible">
+        <button class="valeria-product__collapsible-header" data-collapsible-header>
+          Shipping & Returns
+          <span>+</span>
+        </button>
+        <div class="valeria-product__collapsible-content" data-collapsible-content>
+          <p>Free shipping on orders over $100. Returns accepted within 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/json" id="product-json">
+  {{ product | json }}
+</script>
+
+<script>
+  window.productData = JSON.parse(document.getElementById('product-json').textContent);
+</script>
+
+{% schema %}
+{
+  "name": "Product",
+  "blocks": [
+    {
+      "type": "title",
+      "name": "Title"
+    },
+    {
+      "type": "price",
+      "name": "Price"
+    },
+    {
+      "type": "variants",
+      "name": "Variants"
+    },
+    {
+      "type": "quantity",
+      "name": "Quantity"
+    },
+    {
+      "type": "add-to-cart",
+      "name": "Add to Cart"
+    },
+    {
+      "type": "description",
+      "name": "Description"
+    },
+    {
+      "type": "shipping-info",
+      "name": "Shipping Info"
+    }
+  ]
+}
+{% endschema %}

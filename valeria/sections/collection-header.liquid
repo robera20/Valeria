@@ -1,0 +1,91 @@
+{%- comment -%}
+  VALERIA COLLECTION HEADER SECTION
+{%- endcomment -%}
+
+<section class="valeria-collection-header">
+  {%- if section.settings.show_image and collection.image -%}
+    <div class="valeria-collection-header__image">
+      {{ collection.image | img_tag: collection.title }}
+    </div>
+  {%- endif -%}
+
+  <div class="valeria-collection-header__content">
+    <div class="valeria-container">
+      {%- if collection.title -%}
+        <h1 class="valeria-collection-header__title">{{ collection.title }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.show_description and collection.description -%}
+        <div class="valeria-collection-header__description">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-collection-header {
+    position: relative;
+  }
+
+  .valeria-collection-header__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--valeria-color-foreground);
+  }
+
+  .valeria-collection-header__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .valeria-collection-header__content {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+    text-align: center;
+  }
+
+  .valeria-collection-header__title {
+    font-size: var(--valeria-font-size-h1);
+    margin-bottom: var(--valeria-space-2);
+  }
+
+  .valeria-collection-header__description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--valeria-color-text);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .valeria-collection-header__content {
+      padding: var(--valeria-space-4) var(--valeria-space-2);
+    }
+
+    .valeria-collection-header__title {
+      font-size: 1.75rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "label": "Show collection image",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

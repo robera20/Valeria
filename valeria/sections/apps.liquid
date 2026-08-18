@@ -1,0 +1,58 @@
+{%- comment -%}
+  VALERIA APPS SECTION - FOR THIRD-PARTY APPS
+{%- endcomment -%}
+
+<section class="valeria-apps">
+  <div class="valeria-container">
+    {%- if section.settings.title -%}
+      <h2 class="valeria-section-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="valeria-apps__content" data-apps-content>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'app_block' -%}
+            {{ block.settings.app_content }}
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-apps {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+  }
+
+  .valeria-apps__content {
+    display: grid;
+    gap: var(--valeria-space-4);
+  }
+
+  [data-apps-content] > * {
+    max-width: 100%;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Apps",
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Apps"
+    }
+  ]
+}
+{% endschema %}

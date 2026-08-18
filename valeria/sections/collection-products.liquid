@@ -1,0 +1,264 @@
+{%- comment -%}
+  VALERIA COLLECTION PRODUCTS SECTION
+{%- endcomment -%}
+
+<section class="valeria-collection-products">
+  <div class="valeria-container">
+    <div class="valeria-collection-products__layout">
+      {%- if section.settings.enable_filters -%}
+        <aside class="valeria-collection-filters">
+          <h3 class="valeria-collection-filters__title">Filters</h3>
+          
+          {%- for filter in collection.filters -%}
+            <div class="valeria-filter-group">
+              <h4 class="valeria-filter-group__title">{{ filter.label }}</h4>
+              
+              {%- for option in filter.values -%}
+                <label class="valeria-filter-option">
+                  <input 
+                    type="checkbox"
+                    name="{{ filter.param_name }}[]"
+                    value="{{ option.value }}"
+                    {% if option.active %}checked{% endif %}
+                    {% if option.count == 0 %}disabled{% endif %}
+                  >
+                  <span>{{ option.label }}</span>
+                  {% if option.count > 0 %}
+                    <span class="valeria-filter-count">({{ option.count }})</span>
+                  {% endif %}
+                </label>
+              {%- endfor -%}
+            </div>
+          {%- endfor -%}
+
+          <button class="valeria-button valeria-button--primary" style="width: 100%;">
+            Apply Filters
+          </button>
+        </aside>
+      {%- endif -%}
+
+      <div class="valeria-collection-main">
+        {%- if section.settings.enable_sorting -%}
+          <div class="valeria-collection-toolbar">
+            <p class="valeria-collection-toolbar__count">
+              {%- if collection.products_count > 0 -%}
+                Showing {{ collection.products.size }} of {{ collection.products_count }} products
+              {%- endif -%}
+            </p>
+
+            <select class="valeria-sort-select">
+              <option value="featured">Featured</option>
+              <option value="newest">Newest</option>
+              <option value="best-selling">Best Selling</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
+          </div>
+        {%- endif -%}
+
+        {%- if collection.products_count > 0 -%}
+          <div class="valeria-product-grid" data-columns="{{ section.settings.columns }}">
+            {%- for product in collection.products limit: section.settings.limit -%}
+              <div class="valeria-product-card">
+                <div class="valeria-product-card__image">
+                  {%- if product.featured_media -%}
+                    <a href="{{ product.url }}">
+                      {{ product.featured_media | img_tag: product.title, loading: 'lazy' }}
+                    </a>
+                  {%- endif -%}
+                </div>
+
+                <div class="valeria-product-card__content">
+                  {%- if settings.show_vendor and product.vendor -%}
+                    <p class="valeria-product-card__vendor">{{ product.vendor }}</p>
+                  {%- endif -%}
+
+                  <h3 class="valeria-product-card__title">
+                    <a href="{{ product.url }}">{{ product.title }}</a>
+                  </h3>
+
+                  <div class="valeria-product-card__price">
+                    {%- if product.compare_at_price > product.price -%}
+                      <span class="valeria-product-card__price-compare">
+                        {{ product.compare_at_price | money }}
+                      </span>
+                    {%- endif -%}
+                    <span class="valeria-product-card__price-current">
+                      {{ product.price | money }}
+                    </span>
+                  </div>
+
+                  {%- if settings.enable_quick_add -%}
+                    <form action="/cart/add" method="post" class="valeria-quick-add">
+                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                      <button type="submit" class="valeria-button valeria-button--secondary">
+                        Quick Add
+                      </button>
+                    </form>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if collection.products.size < collection.products_count -%}
+            <div class="valeria-collection-pagination">
+              <button class="valeria-button">Load More</button>
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <div class="valeria-collection-empty">
+            <p>No products found</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .valeria-collection-products {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+  }
+
+  .valeria-collection-products__layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--valeria-space-6);
+  }
+
+  .valeria-collection-filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--valeria-space-3);
+  }
+
+  .valeria-collection-filters__title {
+    font-weight: 600;
+    margin-bottom: var(--valeria-space-2);
+  }
+
+  .valeria-filter-group {
+    padding-bottom: var(--valeria-space-3);
+    border-bottom: 1px solid var(--valeria-color-border);
+  }
+
+  .valeria-filter-group__title {
+    font-weight: 600;
+    margin-bottom: var(--valeria-space-1);
+    font-size: 0.95rem;
+  }
+
+  .valeria-filter-option {
+    display: flex;
+    align-items: center;
+    gap: var(--valeria-space-1);
+    cursor: pointer;
+    margin-bottom: var(--valeria-space-1);
+    font-size: 0.9rem;
+  }
+
+  .valeria-filter-option input[type="checkbox"] {
+    cursor: pointer;
+  }
+
+  .valeria-filter-count {
+    opacity: 0.6;
+  }
+
+  .valeria-collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--valeria-space-4);
+    padding-bottom: var(--valeria-space-3);
+    border-bottom: 1px solid var(--valeria-color-border);
+  }
+
+  .valeria-collection-toolbar__count {
+    font-size: 0.95rem;
+    opacity: 0.7;
+  }
+
+  .valeria-sort-select {
+    padding: var(--valeria-space-1) var(--valeria-space-2);
+    border: 1px solid var(--valeria-color-border);
+    border-radius: var(--valeria-radius-md);
+  }
+
+  .valeria-product-grid {
+    display: grid;
+    gap: var(--valeria-space-4);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    margin-bottom: var(--valeria-space-6);
+  }
+
+  .valeria-collection-pagination {
+    text-align: center;
+    padding: var(--valeria-space-4);
+  }
+
+  .valeria-collection-empty {
+    text-align: center;
+    padding: var(--valeria-space-6);
+  }
+
+  @media (max-width: 1024px) {
+    .valeria-collection-products__layout {
+      grid-template-columns: 200px 1fr;
+      gap: var(--valeria-space-4);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .valeria-collection-products__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .valeria-collection-filters {
+      display: none;
+    }
+
+    .valeria-product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Products",
+  "settings": [
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "default": 24,
+      "label": "Products per page"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4,
+      "label": "Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "Show filters",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "label": "Show sorting",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

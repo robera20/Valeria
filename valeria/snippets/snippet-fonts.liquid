@@ -1,0 +1,34 @@
+{%- liquid
+  assign font_system = settings.font_system | default: 'inter'
+  
+  case font_system
+    when 'inter'
+      assign font_url = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+      assign font_name = 'Inter'
+    when 'poppins'
+      assign font_url = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap'
+      assign font_name = 'Poppins'
+    when 'dm-sans'
+      assign font_url = 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap'
+      assign font_name = 'DM Sans'
+    when 'outfit'
+      assign font_url = 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap'
+      assign font_name = 'Outfit'
+    when 'space-mono'
+      assign font_url = 'https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap'
+      assign font_name = 'Space Mono'
+    else
+      assign font_url = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
+      assign font_name = 'Inter'
+  endcase
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ font_url }}">
+
+<style>
+  :root {
+    --font-family-primary: '{{ font_name }}', sans-serif;
+  }
+</style>

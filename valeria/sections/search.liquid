@@ -1,0 +1,161 @@
+{%- comment -%}
+  VALERIA SEARCH SECTION
+{%- endcomment -%}
+
+<section class="valeria-search-results">
+  <div class="valeria-container">
+    <div class="valeria-search-header">
+      <h1 class="valeria-search-title">
+        {{ 'Search results for "' | escape }}{{ search.term }}{{ '"' | escape }}
+      </h1>
+      
+      <form method="get" action="/search" class="valeria-search-form">
+        <input 
+          type="text"
+          name="q"
+          value="{{ search.term }}"
+          class="valeria-search-form__input"
+          placeholder="Search..."
+        >
+        <button type="submit" class="valeria-button valeria-button--primary">
+          Search
+        </button>
+      </form>
+
+      {%- if search.performed -%}
+        <p class="valeria-search-count">
+          {%- if search.results_count == 0 -%}
+            No results found
+          {%- elsif search.results_count == 1 -%}
+            1 result found
+          {%- else -%}
+            {{ search.results_count }} results found
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    </div>
+
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <div class="valeria-search-results__grid">
+          {%- for result in search.results -%}
+            {%- case result.object_type -%}
+              {%- when 'product' -%}
+                <div class="valeria-product-card" data-product-item>
+                  <div class="valeria-product-card__image">
+                    {%- if result.featured_media -%}
+                      <a href="{{ result.url }}">
+                        {{ result.featured_media | img_tag: result.title, loading: 'lazy' }}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                  <div class="valeria-product-card__content">
+                    <h3 class="valeria-product-card__title">
+                      <a href="{{ result.url }}" data-product-title>{{ result.title }}</a>
+                    </h3>
+                    <div class="valeria-product-card__price">
+                      {%- if result.compare_at_price > result.price -%}
+                        <span class="valeria-product-card__price-compare">
+                          {{ result.compare_at_price | money }}
+                        </span>
+                      {%- endif -%}
+                      <span class="valeria-product-card__price-current" data-product-price>
+                        {{ result.price | money }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="valeria-search-empty">
+          <p>{{ 'general.search.no_results' | t }}</p>
+          <a href="/collections/all" class="valeria-button valeria-button--primary">
+            Browse All Products
+          </a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .valeria-search-results {
+    padding: var(--valeria-space-6) var(--valeria-space-3);
+    min-height: 60vh;
+  }
+
+  .valeria-search-header {
+    text-align: center;
+    margin-bottom: var(--valeria-space-6);
+  }
+
+  .valeria-search-title {
+    font-size: var(--valeria-font-size-h1);
+    margin-bottom: var(--valeria-space-3);
+  }
+
+  .valeria-search-form {
+    display: flex;
+    gap: var(--valeria-space-2);
+    max-width: 600px;
+    margin: 0 auto var(--valeria-space-3);
+    justify-content: center;
+  }
+
+  .valeria-search-form__input {
+    flex: 1;
+    max-width: 300px;
+    padding: var(--valeria-space-2);
+    border: 1px solid var(--valeria-color-border);
+    border-radius: var(--valeria-radius-md);
+  }
+
+  .valeria-search-count {
+    color: var(--valeria-color-text);
+    opacity: 0.7;
+    font-size: 0.95rem;
+  }
+
+  .valeria-search-results__grid {
+    display: grid;
+    gap: var(--valeria-space-4);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .valeria-search-empty {
+    text-align: center;
+    padding: var(--valeria-space-6);
+  }
+
+  .valeria-search-empty p {
+    margin-bottom: var(--valeria-space-4);
+    color: var(--valeria-color-text);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .valeria-search-form {
+      flex-direction: column;
+    }
+
+    .valeria-search-form__input {
+      max-width: 100%;
+    }
+
+    .valeria-search-results__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .valeria-search-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Search Results"
+}
+{% endschema %}

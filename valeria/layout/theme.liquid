@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" dir="{% render 'snippet-dir' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.color_bg }}">
+    
+    <title>
+        {%- if page_title == blank -%}
+            {{ shop.name }}
+        {%- else -%}
+            {{ page_title }} — {{ shop.name }}
+        {%- endif -%}
+    </title>
+
+    {%- if page_description -%}
+        <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    
+    <!-- Open Graph -->
+    {% render 'snippet-og-meta' %}
+    
+    <!-- Favicon -->
+    {% if settings.favicon != blank %}
+        <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+    {% endif %}
+
+    <!-- CSS -->
+    {{ 'valeria-base.css' | asset_url | stylesheet_tag }}
+    {{ 'valeria-components.css' | asset_url | stylesheet_tag }}
+    {{ 'valeria-product.css' | asset_url | stylesheet_tag }}
+    {{ 'valeria-cart.css' | asset_url | stylesheet_tag }}
+    {{ 'valeria-animations.css' | asset_url | stylesheet_tag }}
+    
+    <!-- Fonts -->
+    {% render 'snippet-fonts' %}
+    
+    {{ content_for_header }}
+</head>
+
+<body class="valeria-store {% if settings.animations_enabled %}valeria--animations-enabled{% else %}valeria--animations-disabled{% endif %}">
+    <!-- Announcement Bar -->
+    {% render 'announcement-bar' %}
+    
+    <!-- Header -->
+    {% render 'header' %}
+    
+    <!-- Search Modal -->
+    {% render 'search-overlay' %}
+    
+    <!-- Cart Drawer -->
+    {% render 'cart-drawer' %}
+    
+    <!-- Main Content -->
+    <main id="MainContent" class="valeria-main">
+        {{ content_for_layout }}
+    </main>
+    
+    <!-- Footer -->
+    {% render 'footer' %}
+    
+    <!-- Cookie Banner (if applicable) -->
+    {% render 'snippet-cookie-notice' %}
+    
+    <!-- Quick View Modal -->
+    <div id="QuickViewModal" class="valeria-modal valeria-modal--hidden" role="dialog" aria-label="{{ 'general.quick_view' | t }}"></div>
+    
+    <!-- JavaScript -->
+    <script src="{{ 'valeria-theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'valeria-cart.js' | asset_url }}" defer></script>
+    <script src="{{ 'valeria-search.js' | asset_url }}" defer></script>
+    <script src="{{ 'valeria-product.js' | asset_url }}" defer></script>
+    
+    <!-- Shopify Analytics -->
+    <script src="https://cdn.shopify.com/shop/analytics.js" defer></script>
+</body>
+</html>

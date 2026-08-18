@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "product": {
+      "type": "product",
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "variants": {
+          "type": "variants"
+        },
+        "quantity": {
+          "type": "quantity"
+        },
+        "add_to_cart": {
+          "type": "add-to-cart"
+        },
+        "description": {
+          "type": "description"
+        },
+        "shipping": {
+          "type": "shipping-info"
+        }
+      },
+      "block_order": ["title", "price", "variants", "quantity", "add_to_cart", "description", "shipping"]
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "title": "You May Also Like",
+        "columns": 4
+      }
+    }
+  },
+  "order": ["product", "recommendations"]
+}

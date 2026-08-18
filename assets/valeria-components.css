@@ -1,0 +1,588 @@
+/* ============================================================================
+   VALERIA THEME - COMPONENT STYLES
+   ============================================================================ */
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.valeria-header {
+  background-color: rgb(var(--valeria-color-bg));
+  border-bottom: 1px solid rgb(var(--valeria-color-border));
+  height: auto;
+  position: relative;
+  z-index: var(--valeria-z-sticky);
+  transition: all var(--valeria-transition-base);
+}
+
+.valeria-header.valeria-header--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.valeria-header.valeria-header--transparent {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.valeria-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--valeria-header-height, 70px);
+  padding: 0 var(--valeria-container-padding);
+}
+
+.valeria-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-weight: var(--valeria-font-weight-bold);
+  font-size: var(--valeria-font-size-xl);
+  color: rgb(var(--valeria-color-heading));
+}
+
+.valeria-logo img {
+  height: auto;
+  max-width: var(--valeria-logo-width, 120px);
+}
+
+.valeria-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--valeria-space-16);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.valeria-nav__item > a {
+  position: relative;
+  color: rgb(var(--valeria-color-fg));
+  font-weight: var(--valeria-font-weight-medium);
+  text-decoration: none;
+  padding: var(--valeria-space-3) 0;
+  transition: color var(--valeria-transition-fast);
+}
+
+.valeria-nav__item > a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(var(--valeria-color-accent));
+  transition: width var(--valeria-transition-base);
+}
+
+.valeria-nav__item > a:hover::after {
+  width: 100%;
+}
+
+.valeria-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--valeria-space-12);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.valeria-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  color: rgb(var(--valeria-color-fg));
+  transition: color var(--valeria-transition-fast);
+}
+
+.valeria-header-icon:hover {
+  color: rgb(var(--valeria-color-accent));
+}
+
+.valeria-header-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================================================
+   MEGA MENU
+   ============================================================================ */
+
+.valeria-mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgb(var(--valeria-color-bg));
+  border-bottom: 1px solid rgb(var(--valeria-color-border));
+  padding: var(--valeria-space-16);
+  display: none;
+  z-index: var(--valeria-z-dropdown);
+}
+
+.valeria-mega-menu.valeria-mega-menu--active {
+  display: block;
+}
+
+.valeria-mega-menu__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--valeria-space-16);
+  max-width: var(--valeria-container-width);
+  margin: 0 auto;
+}
+
+.valeria-mega-menu__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--valeria-space-8);
+}
+
+.valeria-mega-menu__heading {
+  font-weight: var(--valeria-font-weight-bold);
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-heading));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--valeria-space-4);
+}
+
+.valeria-mega-menu__link {
+  color: rgb(var(--valeria-color-text-muted));
+  text-decoration: none;
+  font-size: var(--valeria-font-size-sm);
+  transition: color var(--valeria-transition-fast);
+}
+
+.valeria-mega-menu__link:hover {
+  color: rgb(var(--valeria-color-accent));
+}
+
+/* ============================================================================
+   PRODUCT CARD
+   ============================================================================ */
+
+.valeria-product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--valeria-transition-base);
+}
+
+.valeria-product-card:hover {
+  transform: translateY(-4px);
+}
+
+.valeria-product-card__image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 133.333%;
+  overflow: hidden;
+  border-radius: var(--valeria-radius-md);
+  background-color: rgb(var(--valeria-color-card-bg));
+  margin-bottom: var(--valeria-space-8);
+}
+
+.valeria-product-card__image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--valeria-transition-base);
+}
+
+.valeria-product-card:hover .valeria-product-card__image img {
+  transform: scale(1.05);
+}
+
+.valeria-product-card__badge {
+  position: absolute;
+  top: var(--valeria-space-4);
+  right: var(--valeria-space-4);
+  padding: var(--valeria-space-2) var(--valeria-space-4);
+  background-color: rgb(var(--valeria-color-accent));
+  color: rgb(var(--valeria-color-bg));
+  font-size: var(--valeria-font-size-caption);
+  font-weight: var(--valeria-font-weight-bold);
+  border-radius: var(--valeria-radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.valeria-product-card__badge--sale {
+  background-color: rgb(var(--valeria-color-sale-price));
+}
+
+.valeria-product-card__badge--new {
+  background-color: rgb(var(--valeria-color-accent-secondary));
+}
+
+.valeria-product-card__info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.valeria-product-card__vendor {
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-text-muted));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--valeria-space-2);
+}
+
+.valeria-product-card__title {
+  font-size: var(--valeria-font-size-base);
+  font-weight: var(--valeria-font-weight-semibold);
+  color: rgb(var(--valeria-color-heading));
+  margin-bottom: var(--valeria-space-4);
+  line-height: var(--valeria-line-height-tight);
+  flex-grow: 1;
+}
+
+.valeria-product-card__price {
+  display: flex;
+  gap: var(--valeria-space-4);
+  align-items: center;
+  margin-bottom: var(--valeria-space-4);
+}
+
+.valeria-product-card__price-current {
+  font-size: var(--valeria-font-size-base);
+  font-weight: var(--valeria-font-weight-bold);
+  color: rgb(var(--valeria-color-price));
+}
+
+.valeria-product-card__price-compare {
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-text-muted));
+  text-decoration: line-through;
+}
+
+.valeria-product-card__availability {
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-text-muted));
+  margin-bottom: var(--valeria-space-8);
+}
+
+.valeria-product-card__actions {
+  display: flex;
+  gap: var(--valeria-space-8);
+}
+
+.valeria-product-card__quick-add {
+  flex: 1;
+}
+
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
+
+.valeria-hero {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  overflow: hidden;
+  background-color: rgb(var(--valeria-color-card-bg));
+}
+
+.valeria-hero__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.valeria-hero__media img,
+.valeria-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.valeria-hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10, 14, 39, 0.4), rgba(109, 213, 255, 0.1));
+  z-index: 1;
+}
+
+.valeria-hero__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--valeria-space-32);
+  text-align: center;
+  color: rgb(var(--valeria-color-fg));
+}
+
+.valeria-hero__heading {
+  font-size: var(--valeria-font-size-4xl);
+  font-weight: var(--valeria-font-weight-bold);
+  margin-bottom: var(--valeria-space-16);
+  letter-spacing: -0.02em;
+}
+
+.valeria-hero__subheading {
+  font-size: var(--valeria-font-size-xl);
+  font-weight: var(--valeria-font-weight-normal);
+  color: rgb(var(--valeria-color-text-muted));
+  margin-bottom: var(--valeria-space-24);
+  max-width: 600px;
+}
+
+.valeria-hero__cta {
+  display: flex;
+  gap: var(--valeria-space-8);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ============================================================================
+   COLLECTION GRID
+   ============================================================================ */
+
+.valeria-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--valeria-space-24);
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .valeria-collection-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--valeria-space-16);
+  }
+}
+
+@media (max-width: 768px) {
+  .valeria-collection-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--valeria-space-12);
+  }
+}
+
+@media (max-width: 480px) {
+  .valeria-collection-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+
+.valeria-footer {
+  background-color: rgb(var(--valeria-color-card-bg));
+  border-top: 1px solid rgb(var(--valeria-color-border));
+  padding: var(--valeria-space-48) var(--valeria-container-padding);
+  margin-top: var(--valeria-space-64);
+}
+
+.valeria-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--valeria-space-32);
+  max-width: var(--valeria-container-width);
+  margin: 0 auto var(--valeria-space-24);
+}
+
+.valeria-footer__section-title {
+  font-size: var(--valeria-font-size-sm);
+  font-weight: var(--valeria-font-weight-bold);
+  color: rgb(var(--valeria-color-heading));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--valeria-space-12);
+}
+
+.valeria-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--valeria-space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.valeria-footer__link {
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-text-muted));
+  text-decoration: none;
+  transition: color var(--valeria-transition-fast);
+}
+
+.valeria-footer__link:hover {
+  color: rgb(var(--valeria-color-accent));
+}
+
+.valeria-footer__bottom {
+  border-top: 1px solid rgb(var(--valeria-color-border));
+  padding-top: var(--valeria-space-24);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--valeria-space-16);
+  max-width: var(--valeria-container-width);
+  margin: 0 auto;
+  font-size: var(--valeria-font-size-sm);
+  color: rgb(var(--valeria-color-text-muted));
+}
+
+/* ============================================================================
+   MOBILE NAVIGATION
+   ============================================================================ */
+
+.valeria-mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(var(--valeria-color-bg));
+  z-index: var(--valeria-z-fixed);
+  overflow-y: auto;
+  padding: var(--valeria-space-24);
+}
+
+.valeria-mobile-nav.valeria-mobile-nav--open {
+  display: flex;
+  flex-direction: column;
+}
+
+.valeria-mobile-nav__close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: rgb(var(--valeria-color-fg));
+  font-size: var(--valeria-font-size-2xl);
+  cursor: pointer;
+  margin-bottom: var(--valeria-space-24);
+}
+
+.valeria-mobile-nav__item {
+  padding: var(--valeria-space-8) 0;
+  border-bottom: 1px solid rgb(var(--valeria-color-border));
+}
+
+.valeria-mobile-nav__link {
+  color: rgb(var(--valeria-color-fg));
+  text-decoration: none;
+  font-weight: var(--valeria-font-weight-medium);
+}
+
+/* ============================================================================
+   MODAL / DIALOG
+   ============================================================================ */
+
+.valeria-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(10, 14, 39, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--valeria-z-modal);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--valeria-transition-base), visibility var(--valeria-transition-base);
+}
+
+.valeria-modal--hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.valeria-modal__content {
+  background-color: rgb(var(--valeria-color-bg));
+  border: 1px solid rgb(var(--valeria-color-border));
+  border-radius: var(--valeria-radius-lg);
+  padding: var(--valeria-space-32);
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.valeria-modal__close {
+  position: absolute;
+  top: var(--valeria-space-16);
+  right: var(--valeria-space-16);
+  background: none;
+  border: none;
+  font-size: var(--valeria-font-size-2xl);
+  color: rgb(var(--valeria-color-fg));
+  cursor: pointer;
+}
+
+/* ============================================================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .valeria-nav {
+    display: none;
+  }
+
+  .valeria-header-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .valeria-hero__heading {
+    font-size: var(--valeria-font-size-2xl);
+  }
+
+  .valeria-hero__subheading {
+    font-size: var(--valeria-font-size-lg);
+  }
+
+  .valeria-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .valeria-hero__content {
+    padding: var(--valeria-space-24);
+  }
+
+  .valeria-footer {
+    padding: var(--valeria-space-32) var(--valeria-container-padding);
+  }
+
+  .valeria-footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--valeria-space-24);
+  }
+
+  .valeria-footer__bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

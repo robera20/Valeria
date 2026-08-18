@@ -1,0 +1,105 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close_menu": "Close menu",
+    "close_search": "Close search",
+    "open_cart": "Open cart",
+    "cart_title": "Shopping Cart"
+  },
+  "general": {
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you're looking for doesn't exist."
+    },
+    "newsletter": {
+      "label": "Email address",
+      "success": "Thanks for subscribing",
+      "error": "Please enter a valid email"
+    },
+    "pagination": {
+      "label": "Pagination",
+      "page": "Page {{ number }}"
+    },
+    "quick_view": "Quick view",
+    "search": {
+      "no_results": "No products found",
+      "results_with_count": "{{ count }} product",
+      "results_with_count_plural": "{{ count }} products"
+    }
+  },
+  "header": {
+    "search": "Search",
+    "account": "Account",
+    "cart": "Cart",
+    "menu": "Menu"
+  },
+  "footer": {
+    "copyright": "© {{ year }} {{ shop.name }}",
+    "payment_methods": "Payment methods",
+    "follow_us": "Follow us",
+    "country": "Country",
+    "language": "Language"
+  },
+  "product": {
+    "title": "Product",
+    "price": "Price",
+    "price_range_from": "From {{ price }}",
+    "compare_at_price": "Compare at",
+    "vendor": "Vendor: {{ vendor }}",
+    "quantity": "Quantity",
+    "add_to_cart": "Add to cart",
+    "buy_now": "Buy now",
+    "unavailable": "Unavailable",
+    "in_stock": "In stock",
+    "out_of_stock": "Out of stock",
+    "low_stock": "Only {{ count }} left",
+    "select_option": "Select {{ option }}",
+    "media_load_error": "Unable to load media"
+  },
+  "collection": {
+    "title": "Collection",
+    "empty": "No products found",
+    "sort_by": "Sort by",
+    "filters": "Filters",
+    "show_filters": "Show filters",
+    "hide_filters": "Hide filters",
+    "apply_filters": "Apply filters",
+    "clear_filters": "Clear filters",
+    "results_count": "Showing {{ count }} result",
+    "results_count_plural": "Showing {{ count }} results"
+  },
+  "cart": {
+    "empty_title": "Your cart is empty",
+    "empty_text": "Start shopping to add items to your cart",
+    "continue_shopping": "Continue shopping",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "discount": "Discount",
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "free_shipping_progress": "Free shipping on orders over {{ threshold }}",
+    "free_shipping_unlocked": "You've unlocked free shipping!"
+  },
+  "customer": {
+    "account": "Account",
+    "login": "Log in",
+    "logout": "Log out",
+    "register": "Create account",
+    "orders": "Orders",
+    "addresses": "Addresses",
+    "email": "Email",
+    "password": "Password",
+    "reset_password": "Reset password"
+  },
+  "form": {
+    "error": "Error",
+    "success": "Success",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "required": "This field is required"
+  }
+}

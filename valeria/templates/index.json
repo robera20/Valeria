@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Welcome to VALERIA",
+        "subheading": "The Future of Commerce",
+        "image": "",
+        "height": "large",
+        "overlay": true
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured Products",
+        "collection": "all",
+        "columns": 4
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "title": "Join the Future",
+        "description": "Subscribe to get special offers and updates."
+      }
+    }
+  },
+  "order": ["hero", "featured_collection", "newsletter"]
+}

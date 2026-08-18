@@ -1,0 +1,19 @@
+{%- comment -%}
+  Renders the announcement bar
+{%- endcomment -%}
+
+{%- if settings.show_announcement_bar -%}
+  <div class="valeria-announcement-bar" role="complementary">
+    <div class="valeria-announcement-bar__inner">
+      {%- if settings.announcement_link -%}
+        <a href="{{ settings.announcement_link }}" class="valeria-announcement-bar__content">
+          {{ settings.announcement_text }}
+        </a>
+      {%- else -%}
+        <div class="valeria-announcement-bar__content">
+          {{ settings.announcement_text }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

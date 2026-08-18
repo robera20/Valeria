@@ -1,0 +1,73 @@
+{%- comment -%}
+  Renders the main header
+{%- endcomment -%}
+
+<header class="valeria-header" role="banner">
+  <div class="valeria-header__inner">
+    <div class="valeria-header__logo">
+      {%- if settings.logo -%}
+        <a href="{{ '/' | asset_url }}" class="valeria-header__logo-link">
+          <img 
+            src="{{ settings.logo | img_url: '150x150' }}"
+            alt="{{ shop.name }}"
+            class="valeria-header__logo-image"
+            width="{{ settings.logo_width }}"
+            height="auto"
+            loading="eager"
+          >
+        </a>
+      {%- else -%}
+        <a href="/" class="valeria-header__logo-link valeria-header__logo-text">
+          {{ shop.name }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <nav class="valeria-header__nav" role="navigation" aria-label="Main">
+      {%- for link in linklists.main-menu.links -%}
+        <div class="valeria-header__nav-item">
+          <a href="{{ link.url }}" class="valeria-header__nav-link">
+            {{ link.title }}
+          </a>
+        </div>
+      {%- endfor -%}
+    </nav>
+
+    <div class="valeria-header__actions">
+      <button 
+        class="valeria-header__action valeria-header__search-trigger"
+        aria-label="{{ 'header.search' | t }}"
+        data-action="open-search"
+      >
+        {% render 'icon', icon: 'search' %}
+      </button>
+
+      <a 
+        href="{{ routes.account_url }}"
+        class="valeria-header__action"
+        aria-label="{{ 'header.account' | t }}"
+      >
+        {% render 'icon', icon: 'account' %}
+      </a>
+
+      <button 
+        class="valeria-header__action valeria-header__cart-trigger"
+        aria-label="{{ 'header.cart' | t }}"
+        data-action="open-cart"
+      >
+        {% render 'icon', icon: 'cart' %}
+        {%- if cart.item_count > 0 -%}
+          <span class="valeria-header__cart-count">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </button>
+
+      <button 
+        class="valeria-header__menu-trigger"
+        aria-label="{{ 'accessibility.close_menu' | t }}"
+        data-action="toggle-mobile-menu"
+      >
+        {% render 'icon', icon: 'menu' %}
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,54 @@
+{%- comment -%}
+  Renders the main footer
+{%- endcomment -%}
+
+<footer class="valeria-footer" role="contentinfo">
+  <div class="valeria-footer__inner">
+    <div class="valeria-footer__grid">
+      <div class="valeria-footer__section">
+        <h3 class="valeria-footer__heading">Shop</h3>
+        <ul class="valeria-footer__list">
+          {%- for link in linklists.footer.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div class="valeria-footer__section">
+        <h3 class="valeria-footer__heading">Help</h3>
+        <ul class="valeria-footer__list">
+          <li><a href="{{ pages.contact.url }}">Contact</a></li>
+          <li><a href="{{ pages.about.url }}">About</a></li>
+          <li><a href="{{ pages.faq.url }}">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="valeria-footer__section">
+        <h3 class="valeria-footer__heading">Legal</h3>
+        <ul class="valeria-footer__list">
+          <li><a href="{{ shop.policies.privacy_policy.url }}">Privacy</a></li>
+          <li><a href="{{ shop.policies.terms_of_service.url }}">Terms</a></li>
+          <li><a href="{{ shop.policies.refund_policy.url }}">Returns</a></li>
+        </ul>
+      </div>
+
+      <div class="valeria-footer__section">
+        <h3 class="valeria-footer__heading">Newsletter</h3>
+        {% render 'newsletter-form' %}
+      </div>
+    </div>
+
+    <div class="valeria-footer__bottom">
+      <p class="valeria-footer__copyright">
+        © {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+      </p>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <div class="valeria-footer__payments">
+          {%- for type in shop.enabled_payment_types -%}
+            <span class="valeria-payment-icon">{{ type | payment_type_svg_tag }}</span>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>

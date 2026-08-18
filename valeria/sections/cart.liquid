@@ -1,0 +1,110 @@
+{%- comment -%}
+  VALERIA CART SECTION
+{%- endcomment -%}
+
+<section class="valeria-cart-page">
+  <div class="valeria-cart-page__inner">
+    <div class="valeria-cart-page__header">
+      <h1 class="valeria-cart-page__title">{{ 'cart.empty_title' | t }}</h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="valeria-cart-page__content">
+        <div class="valeria-cart-page__items">
+          {%- for item in cart.items -%}
+            <div class="valeria-cart-page__item">
+              {%- if item.image -%}
+                <div class="valeria-cart-page__item-image">
+                  <img 
+                    src="{{ item.image | img_url: '150x150' }}"
+                    alt="{{ item.title }}"
+                    width="150"
+                    height="150"
+                    loading="lazy"
+                  >
+                </div>
+              {%- endif -%}
+
+              <div class="valeria-cart-page__item-info">
+                <a href="{{ item.url }}" class="valeria-cart-page__item-title">
+                  {{ item.title }}
+                </a>
+
+                {%- if item.variant_title -%}
+                  <p class="valeria-cart-page__item-variant">{{ item.variant_title }}</p>
+                {%- endif -%}
+
+                <p class="valeria-cart-page__item-price">{{ item.price | money }}</p>
+
+                <div class="valeria-cart-page__item-quantity">
+                  <label>Quantity:</label>
+                  <input 
+                    type="number" 
+                    value="{{ item.quantity }}"
+                    min="1"
+                    data-item-quantity
+                    data-item-key="{{ item.key }}"
+                  >
+                </div>
+              </div>
+
+              <button 
+                class="valeria-cart-page__item-remove"
+                data-remove-item="{{ item.key }}"
+              >
+                Remove
+              </button>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <aside class="valeria-cart-page__summary">
+          <h3 class="valeria-cart-page__summary-title">Order Summary</h3>
+
+          <div class="valeria-cart-page__summary-row">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            {%- for discount in cart.cart_level_discount_applications -%}
+              <div class="valeria-cart-page__summary-row">
+                <span>{{ discount.title }}</span>
+                <span>−{{ discount.total_allocated_price | money }}</span>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+
+          <div class="valeria-cart-page__summary-row total">
+            <span>Total</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          <div class="valeria-cart-page__summary-actions">
+            <a href="{{ routes.checkout_url }}" class="valeria-button valeria-button--primary">
+              {{ 'cart.checkout' | t }}
+            </a>
+            <a href="/collections/all" class="valeria-button valeria-button--secondary">
+              {{ 'cart.continue_shopping' | t }}
+            </a>
+          </div>
+        </aside>
+      </div>
+    {%- else -%}
+      <div class="valeria-cart-page__empty">
+        <div class="valeria-cart-page__empty-icon">🛒</div>
+        <h2 class="valeria-cart-page__empty-title">{{ 'cart.empty_title' | t }}</h2>
+        <p class="valeria-cart-page__empty-text">{{ 'cart.empty_text' | t }}</p>
+        <a href="/collections/all" class="valeria-button valeria-button--primary">
+          {{ 'cart.continue_shopping' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart"
+}
+{% endschema %}
