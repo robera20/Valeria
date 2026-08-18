@@ -27,6 +27,45 @@
         <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
     {% endif %}
 
+    <!-- Theme Variables -->
+    <style>
+        :root {
+            --valeria-color-background: {{ settings.color_bg }};
+            --valeria-color-foreground: {{ settings.color_fg }};
+            --valeria-color-heading: {{ settings.color_heading }};
+            --valeria-color-text-muted: {{ settings.color_text_muted }};
+            --valeria-color-accent: {{ settings.color_accent }};
+            --valeria-color-accent-secondary: {{ settings.color_accent_secondary }};
+            --valeria-color-button: {{ settings.color_button_bg }};
+            --valeria-color-button-text: {{ settings.color_button_text }};
+            --valeria-color-border: {{ settings.color_border }};
+            --valeria-color-card: {{ settings.color_card_bg }};
+            --valeria-color-price: {{ settings.color_price }};
+            --valeria-color-sale-price: {{ settings.color_sale_price }};
+            
+            --valeria-container-width: {{ settings.container_width }}px;
+            --valeria-border-radius: {{ settings.border_radius }}px;
+            --valeria-spacing-scale: {{ settings.spacing_scale }}%;
+            
+            --valeria-space-1: calc(4px * var(--valeria-spacing-scale) / 100);
+            --valeria-space-2: calc(8px * var(--valeria-spacing-scale) / 100);
+            --valeria-space-3: calc(16px * var(--valeria-spacing-scale) / 100);
+            --valeria-space-4: calc(24px * var(--valeria-spacing-scale) / 100);
+            --valeria-space-5: calc(32px * var(--valeria-spacing-scale) / 100);
+            --valeria-space-6: calc(48px * var(--valeria-spacing-scale) / 100);
+            
+            --valeria-font-size-body: {{ settings.font_size_base }}px;
+            --valeria-font-size-h1: {{ settings.font_size_base | times: 2.5 | round }}px;
+            --valeria-font-size-h2: {{ settings.font_size_base | times: 2 }}px;
+            --valeria-font-size-h3: {{ settings.font_size_base | times: 1.75 | round }}px;
+            --valeria-font-size-display: {{ settings.font_size_base | times: 3.5 | round }}px;
+            
+            --valeria-transition-fast: 150ms ease;
+            --valeria-transition-base: 300ms ease;
+            --valeria-transition-slow: 500ms ease;
+        }
+    </style>
+    
     <!-- CSS -->
     {{ 'valeria-base.css' | asset_url | stylesheet_tag }}
     {{ 'valeria-components.css' | asset_url | stylesheet_tag }}

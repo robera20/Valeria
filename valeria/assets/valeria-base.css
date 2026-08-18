@@ -1,40 +1,8 @@
 /* VALERIA THEME - BASE STYLES */
 
-/* Root Variables */
+/* Root Variables - Defined in theme.liquid */
 :root {
-  --valeria-color-background: var(--valeria-color-background);
-  --valeria-color-foreground: var(--valeria-color-foreground);
-  --valeria-color-heading: var(--valeria-color-heading);
-  --valeria-color-text: var(--valeria-color-text);
-  --valeria-color-accent: var(--valeria-color-accent);
-  --valeria-color-button: var(--valeria-color-button);
-  --valeria-color-button-text: var(--valeria-color-button-text);
-  --valeria-color-border: var(--valeria-color-border);
-  
-  --valeria-font-family-heading: var(--valeria-font-family-heading);
-  --valeria-font-family-body: var(--valeria-font-family-body);
-  
-  --valeria-radius-sm: var(--valeria-radius-sm);
-  --valeria-radius-md: var(--valeria-radius-md);
-  --valeria-radius-lg: var(--valeria-radius-lg);
-  
-  --valeria-space-1: var(--valeria-space-1);
-  --valeria-space-2: var(--valeria-space-2);
-  --valeria-space-3: var(--valeria-space-3);
-  --valeria-space-4: var(--valeria-space-4);
-  --valeria-space-5: var(--valeria-space-5);
-  --valeria-space-6: var(--valeria-space-6);
-  
-  --valeria-transition-fast: var(--valeria-transition-fast);
-  --valeria-transition-base: var(--valeria-transition-base);
-  --valeria-transition-slow: var(--valeria-transition-slow);
-  
-  --valeria-container-width: var(--valeria-container-width);
-  
-  font-size: var(--valeria-font-size-body);
-  line-height: 1.6;
-  color: var(--valeria-color-text);
-  background-color: var(--valeria-color-background);
+  /* Variables are injected dynamically from Shopify settings in theme.liquid */
 }
 
 /* Reset */
@@ -50,12 +18,12 @@ html {
 }
 
 body {
-  font-family: var(--valeria-font-family-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--valeria-font-family-primary), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--valeria-color-background);
-  color: var(--valeria-color-text);
+  color: var(--valeria-color-foreground);
 }
 
 main {
